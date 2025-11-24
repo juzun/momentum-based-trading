@@ -12,3 +12,7 @@ wheels/
 .python-version
 
 *.db
+
+.vscode/
+.ruff_cache/
+.mypy_cache/

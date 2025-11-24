@@ -3,7 +3,7 @@ from scipy.stats import norm
 
 
 class GBM:
-    def __init__(self):
+    def __init__(self) -> None:
         self.mu: float = np.nan
         self.sigma: float = np.nan
         self.rng = np.random.default_rng()
@@ -32,12 +32,11 @@ class GBM:
 
     def forecast(
         self, latest: float, t: float, confidence: float
-    ) -> dict[str, float | np.ndarray]:
+    ) -> dict[str, np.ndarray]:
         mu = (self.mu - self.sigma**2 / 2) * t
         s: float = self.sigma * np.sqrt(t)
         q = norm.ppf([1 - confidence / 2, 1 + confidence / 2], loc=mu, scale=s)
         return {
-            "confidence": confidence,
             "expected": latest * np.exp(self.mu * t),
             "interval": latest * np.exp(q),
         }

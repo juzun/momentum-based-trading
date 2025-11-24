@@ -4,7 +4,7 @@ from pathlib import Path
 from contextlib import closing
 
 
-def prepare(cs: sqlite3.Cursor, conn: sqlite3.Connection):
+def prepare(cs: sqlite3.Cursor, conn: sqlite3.Connection) -> None:
     cs.execute(
         """
     create table if not exists prices (
